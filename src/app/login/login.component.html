@@ -1,0 +1,47 @@
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<section class="body">
+
+  <div class="wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <h1>Login</h1>
+      <div class="input-box"
+      [class.error]="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')"
+      >
+        <input type="text" formControlName="username" placeholder="Username">
+        <i class="fa fa-user"></i>
+        <small
+        *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required', 'username')">
+        *Username is required
+        </small>
+      </div>
+      <div class="input-box"
+      [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')"
+      >
+        <input type="password" formControlName="password" placeholder="Password" required>
+        <i class="fa fa-lock"></i>
+        <small 
+        *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
+          *Password is required
+          </small>
+      </div>
+
+      <div class="remember-forgot">
+        <label><input type="checkbox">Remember me</label>
+        <a routerLink="/forgotPassword"> Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+      <!-- (click)="onlogin()" -->
+      <div class="register-link">
+        <p>Don't have an account?
+          <a routerLink="/register">Register</a>
+        </p>
+      </div>
+    </form>
+  </div>
+
+</section>
+
+

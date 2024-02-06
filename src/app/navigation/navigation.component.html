@@ -1,0 +1,26 @@
+
+<div id="contain" [ngClass]="{ 'sidebar-active': sidebarActive }">
+  <div id="contentContainer" [style.marginLeft]="sidebarActive ? '0' : '0'">
+    <div class="cf">
+      <div class="dad" routerLink="/home">𝒲𝑒'𝓇𝑒 𝒟𝒶𝒹</div>
+      <button class="but" mat-icon-button (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <!-- Your main content goes here -->
+  </div>
+  <mat-sidenav [opened]="sidebarActive" mode="side" position="end" class="sidenav">
+    <ul *ngIf="sidebarActive" class="lists">
+      <li class="cfname">We're Dad Studios</li>
+      <div class="spaces">
+        <li class="l1"><a routerLink="/home">HOME</a></li>
+        <li class="l1"><a routerLink="/abouts">ABOUT</a></li>
+        <li class="l1"><a routerLink="/teams">OUR TEAM</a></li>
+      </div>
+      <li class="space"><a routerLink="/contacts">CONTACT US</a></li>
+    </ul>
+  </mat-sidenav>
+</div>
+
+
+

@@ -1,0 +1,71 @@
+
+<section class="body">
+  <div class="wrapper">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+      <h1>Sign-Up</h1>
+      <div class="input-box"
+      [class.error]="signUpForm.controls['firstname'].dirty && signUpForm.hasError('required', 'firstname')">
+        <input formControlName="firstname" type="text" placeholder="Firstname" required>
+        <small
+        *ngIf="signUpForm.controls['firstname'].dirty && signUpForm.hasError('required', 'firstname')"
+        >
+          *Firstname is required
+        </small>
+      </div>
+      <div class="input-box"
+      [class.error]="signUpForm.controls['lastname'].dirty && signUpForm.hasError('required', 'lastname')">
+        <input formControlName="lastname" type="text" placeholder="Lastname" required>
+        <small
+        *ngIf="signUpForm.controls['lastname'].dirty && signUpForm.hasError('required', 'lastname')"
+        >
+          *Lastname is required
+        </small>
+      </div>
+      <div class="input-box"
+      [class.error]="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')">
+        <input formControlName="username" type="text" placeholder="Username" required>
+        <small
+        *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required', 'username')"
+        >
+          *Username is required
+        </small>
+      </div>
+      <div class="input-box"
+      [class.error]="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email')">
+        <input formControlName="email" type="email" placeholder="Email" required>
+        <small
+        *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required', 'email')"
+        >
+          *Email is required
+        </small>
+      </div>
+      <div class="input-box"
+      [class.error]="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password')">
+        <input formControlName="password" type="password" placeholder="Password" required>
+        <small
+        *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required', 'password')"
+        >
+          *Password is required
+        </small>
+      </div>
+      <div class="input-box"
+      [class.error]="signUpForm.controls['confirmpassword'].dirty && signUpForm.hasError('required', 'confirmpassword')">
+        <input formControlName="confirmpassword" type="password" placeholder="Confirm Password" required>
+        <small 
+        *ngIf="signUpForm.controls['confirmpassword'].dirty && signUpForm.hasError('required', 'confirmpassword')"
+        >
+          *ConfirmPassword is required
+        </small>
+      </div>
+      <button type="submit" class="btn">Sign-Up</button>
+      <div class="register-link">
+        <p>Already have an account? <a routerLink="/login">Log-In</a></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
+
+

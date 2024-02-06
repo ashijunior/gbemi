@@ -1,0 +1,125 @@
+#contain {
+  display: flex;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+.sidenav-container,
+#contentContainer {
+  flex-grow: 1;
+  transition: margin-right 0.3s;
+}
+
+.but {
+  float: right;
+}
+
+button {
+  color: white;
+  float: right;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.cf {
+  background-color: rgb(70, 67, 67);
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 10px; /* Adjust margin-top value */
+  width: 98%;
+  height: 4.5rem;
+}
+
+ul.lists {
+  list-style-type: none;
+  text-align: center;
+  background-color: rgb(70, 67, 67);
+  color: white;
+  width: 16rem;
+  height: 33rem;
+  padding-right: 1rem;
+}
+
+.l1 {
+  margin-top: 2rem;
+}
+
+ul.lists li a,
+ul.space li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3em;
+  opacity: 0.7;
+  transition: 0.5s;
+}
+
+ul.lists li a:hover,
+ul.space li a:hover {
+  opacity: 1;
+}
+
+.dad {
+  margin-top: 1rem;
+  padding-top: 0.6rem;
+  padding-left: 1.6rem;
+  float: left;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.cfname {
+  padding-top: 7.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 2rem;
+}
+
+.spaces {
+  margin-top: 4rem;
+}
+
+.space {
+  margin-top: 4rem;
+}
+
+#contain {
+  display: flex;
+  flex-direction: column; /* Ensure content and sidenav stack vertically */
+  width: 100%;
+}
+
+#contentContainer {
+  flex-grow: 1; /* Expand to fill remaining vertical space */
+  transition: margin-right 0.3s;
+  margin-right: 0; /* Initially no margin */
+}
+
+.sidenav {
+  flex-shrink: 0; /* Prevent sidenav from shrinking */
+  margin-left: auto
+}
+
+.lists {
+  list-style-type: none;
+  text-align: center;
+  background-color: rgb(70, 67, 67);
+  color: white;
+  border-radius: 0.5rem;
+  width: 16rem;
+  padding-right: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Adjust spacing between list items if needed */
+.lists .l1 {
+  margin-top: 1rem;
+}
+
+.cf,
+.space {
+  font-size: large; /* Adjust font size for consistency */
+}
+
+.spaces {
+  margin-top: 2rem; /* Add space between header and list items */
+}
+
