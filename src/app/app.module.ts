@@ -18,11 +18,13 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FirstpageComponent } from './firstpage/firstpage.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { RpasswordComponent } from './rpassword/rpassword.component';
+
+
 
 
 @NgModule({
@@ -53,6 +55,7 @@ import { RpasswordComponent } from './rpassword/rpassword.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

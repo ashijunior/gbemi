@@ -44,29 +44,25 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
       </div>
     </div>
     <div class="contactForm">
-      <form action="https://formsubmit.co/ebubeashibuogwu@gmail.com" method="POST">
+      <form (ngSubmit)="submitForm()">
         <h2>Send Message</h2>
         <div class="inputBox">
-          <input type="text" id="name" name="Name" required="required">
-          <span>Full Name</span>
+          <input type="text" id="name" name="name" class="form-control" [(ngModel)]="contactForm.name" required>
+          <span for="name" >Full Name</span>
         </div>
         <div class="inputBox">
-          <input type="email" id="email" name="email" required="required" placeholder="">
-          <span>Email</span>
+          <input type="email" id="email" name="email" class="form-control" [(ngModel)]="contactForm.email" required>
+          <span for="email">Email</span>
         </div>
         <div class="inputBox">
-          <textarea id="message" name="Message" required="required"></textarea>
-          <span>How can we help you..?</span>
+          <textarea id="message" name="message" class="form-control" [(ngModel)]="contactForm.message" required></textarea>
+          <span for="message">How can we help you..?</span>
         </div>
         <div class="inputBox">
-          <input type="submit" value="Send">
+          <button type="submit" value="Send">Send</button>
         </div>
       </form>
-      <!-- <form action="https://formsubmit.co/harogereadone@gmail.com" method="POST">
-        <input type="text" name="name" required>
-        <input type="email" name="email" required>
-        <button type="submit">Send</button>
-   </form> -->
+
 
     </div>
   </div>

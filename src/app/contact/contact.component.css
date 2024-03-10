@@ -129,15 +129,19 @@
   transform: translateY(-20px);
 }
 
-.contactForm .inputBox input[type="submit"]{
-  width: 100px;
+.contactForm .inputBox button{
+  width: 80px;
+  height: 2rem;
   background: #262727;
   color: #fff;
   border: none;
   cursor: pointer;
-  padding: 10px;
+  padding: 6px;
   font-size: 18px;
 }
+/* button{
+  color: #fff;
+} */
 
  a{
   color: black;
