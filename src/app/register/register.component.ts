@@ -1,5 +1,7 @@
+
+
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import ValidateForm from '../helpers/validateform';
@@ -24,14 +26,14 @@ export class RegisterComponent implements OnInit {
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
       username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmpassword: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, this.passwordValidator]],
+      confirmpassword: ['', [Validators.required, this.confirmPasswordValidator]]
     });
   }
 
   onSignUp(): void {
-    if (this.signUpForm.valid) {
+    if (this.signUpForm.valid && this.checkValidEmail(this.signUpForm.value.email)) {
       this.auth.signUp(this.signUpForm.value)
         .subscribe({
           next: (res) => {
@@ -61,4 +63,37 @@ export class RegisterComponent implements OnInit {
     alert("Invalid SignUp");
   }
 
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
+    const value: string = control.value || '';
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+    const hasNumber = /[0-9]/.test(value);
+
+    if (!hasUpperCase || !hasSpecialChar || !hasNumber) {
+      return { invalidPassword: true };
+    }
+
+    return null;
+  }
+
+  confirmPasswordValidator(control: AbstractControl): ValidationErrors | null {
+    const value: string = control.value || '';
+    const hasUpperCase = /[A-Z]/.test(value);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
+    const hasNumber = /[0-9]/.test(value);
+
+    if (!hasUpperCase || !hasSpecialChar || !hasNumber) {
+      return { invalidPassword: true };
+    }
+
+    return null;
+  }
+
+  checkValidEmail(email: string): boolean {
+    const pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return pattern.test(email);
+  }
+
+
 }
+

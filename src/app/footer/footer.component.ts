@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  constructor(private authService: AuthService) {}
 
+  signOut(): void {
+    this.authService.signOut();
+  }
 }

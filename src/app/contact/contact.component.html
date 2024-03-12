@@ -43,26 +43,45 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         </div>
       </div>
     </div>
+
+    <!-- form to contact we're dad -->
     <div class="contactForm">
-      <form (ngSubmit)="submitForm()">
+
+      <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
         <h2>Send Message</h2>
-        <div class="inputBox">
-          <input type="text" id="name" name="name" class="form-control" [(ngModel)]="contactForm.name" required>
-          <span for="name" >Full Name</span>
+
+        <!-- Input Full Name -->
+        <div class="inputBox" [class.error]="contactForm.get('name')!.invalid && (contactForm.get('name')!.dirty || contactForm.get('name')!.touched)">
+          <input type="text" formControlName="name" id="name" class="form-control">
+          <span for="name">Full Name</span>
+          <small *ngIf="contactForm.get('name')!.invalid && (contactForm.get('name')!.dirty || contactForm.get('name')!.touched)">
+            *Full Name is required
+          </small>
         </div>
-        <div class="inputBox">
-          <input type="email" id="email" name="email" class="form-control" [(ngModel)]="contactForm.email" required>
+
+        <!-- Input Email -->
+        <div class="inputBox" [class.error]="contactForm.get('email')!.invalid && (contactForm.get('email')!.dirty || contactForm.get('email')!.touched)">
+          <input type="email" formControlName="email" id="email" name="email" class="form-control">
           <span for="email">Email</span>
+          <small *ngIf="contactForm.get('email')!.invalid && (contactForm.get('email')!.dirty || contactForm.get('email')!.touched)">
+            *Email is required
+          </small>
         </div>
-        <div class="inputBox">
-          <textarea id="message" name="message" class="form-control" [(ngModel)]="contactForm.message" required></textarea>
+
+        <!-- Message -->
+        <div class="inputBox" [class.error]="contactForm.get('message')!.invalid && (contactForm.get('message')!.dirty || contactForm.get('message')!.touched)">
+          <textarea formControlName="message" id="message" class="form-control"></textarea>
           <span for="message">How can we help you..?</span>
+          <small *ngIf="contactForm.get('message')!.invalid && (contactForm.get('message')!.dirty || contactForm.get('message')!.touched)">
+            *Message is required
+          </small>
         </div>
+
+        <!-- button to submit -->
         <div class="inputBox">
-          <button type="submit" value="Send">Send</button>
+          <button type="submit" value="Send" [disabled]="contactForm.invalid">Send</button>
         </div>
       </form>
-
 
     </div>
   </div>

@@ -9,6 +9,7 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { FirstpageComponent } from './firstpage/firstpage.component';
 import { LoginComponent } from './login/login.component';
 import { RpasswordComponent } from './rpassword/rpassword.component';
+import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,16 +19,16 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'home', component: HomeComponent
+    path: 'home', component: HomeComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'teams', component: TeamComponent
+    path: 'teams', component: TeamComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'abouts', component: AboutComponent
+    path: 'abouts', component: AboutComponent, canActivate: [AuthGuard]
   },
   {
-    path: 'contacts', component: ContactComponent
+    path: 'contacts', component: ContactComponent, canActivate: [AuthGuard]
   },
   {
     path: 'register', component: RegisterComponent

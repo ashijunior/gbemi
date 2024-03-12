@@ -21,14 +21,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome
       >
         <input type="password" formControlName="password" placeholder="Password" required>
         <i class="fa fa-lock"></i>
-        <small 
+        <small
         *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">
           *Password is required
           </small>
       </div>
 
       <div class="remember-forgot">
-        <label><input type="checkbox">Remember me</label>
+        <label>
+          <input type="checkbox"formControlName="rememberMe">
+          Remember me
+        </label>
         <a routerLink="/forgotPassword"> Forgot password?</a>
       </div>
 
