@@ -37,6 +37,7 @@
 
 .container {
   padding: 0 16px;
+  width: 20rem;
 }
 
 .container::after, .row::after {
@@ -72,5 +73,5 @@
 }
 
 img{
-  height: 17rem;
+  height: 13rem;
 }
