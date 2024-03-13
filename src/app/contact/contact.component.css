@@ -88,13 +88,12 @@
   color: #333;
   font-weight: 500;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 2rem;
 }
 
 .contactForm .inputBox{
   position: relative;
   width: 100%;
-  margin-top: 10px;
-
 }
 
 .contactForm .inputBox input,
@@ -119,6 +118,7 @@
   transition: 0.5s;
   color: #666;
 }
+
 
 .contactForm .inputBox input:focus ~ span,
 .contactForm .inputBox input:valid ~ span,
@@ -167,6 +167,11 @@
 small{
   color: gray;
 }
+
+.error + .inputBox {
+  margin-top: 1rem; /* Add margin only when there is an error */
+}
+
 
 
 

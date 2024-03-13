@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResetPasswordService } from '../service/reset-password.service';
 import { Router } from '@angular/router';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -39,22 +40,33 @@ export class ForgotpasswordComponent implements OnInit {
     return pattern.test(email);
   }
 
-  confirmToSend(): void {
+
+confirmToSend(): void {
     this.resetPasswordEmail = this.emailControl?.value;
     if (this.checkValidEmail(this.resetPasswordEmail)) {
-      this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
-        .subscribe({
-          next: (res) => {
-            alert(res.message);
-            this.resetForm();
-            this.navigateToLogin();
-          },
-          error: (err) => {
-            alert(err?.error?.message);
-          }
-        });
+        this.resetService.sendResetPasswordLink(this.resetPasswordEmail)
+            .subscribe({
+                next: (res) => {
+                    swal({
+                        icon: 'success',
+                        title: 'Success',
+                        text: res.message
+                    }).then(() => {
+                        this.resetForm();
+                        this.navigateToLogin();
+                    });
+                },
+                error: (err) => {
+                    swal({
+                        icon: 'error',
+                        title: 'Error',
+                        text: err?.error?.message || 'An error occurred while sending the reset password link.'
+                    });
+                }
+            });
     }
-  }
+}
+
 
   resetForm(): void {
     this.forgotForm.reset();

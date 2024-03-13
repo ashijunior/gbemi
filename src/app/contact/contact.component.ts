@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import ValidateForm from '../helpers/validateform';
 import { style } from '@angular/animations';
+import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-contact',
@@ -28,25 +30,36 @@ export class ContactComponent implements OnInit {
     });
   }
 
+
+
   submitForm(): void {
-    if (this.contactForm.valid && this.checkValidEmail(this.contactForm.value.email)) {
-      this.http.post('https://localhost:7269/api/Contact', this.contactForm.value)
-        .subscribe({
-          next: (res: any) => {
-            alert(res.message);
-            console.log('Message sent successfully');
-            this.resetForm();
-          },
-          error: (err: any) => {
-            console.error('Failed to send message:', err);
-            console.log('Error response:', err.error); // Log the full error response
-            alert(err?.error?.message || 'An error occurred while sending the message.');
-          }
-        });
-    } else {
-      this.handleInvalidForm();
-    }
+      if (this.contactForm.valid && this.checkValidEmail(this.contactForm.value.email)) {
+          this.http.post('https://localhost:7269/api/Contact', this.contactForm.value)
+              .subscribe({
+                  next: (res: any) => {
+                      swal({
+                          icon: 'success',
+                          title: 'Success',
+                          text: res.message
+                      });
+                      console.log('Message sent successfully');
+                      this.resetForm();
+                  },
+                  error: (err: any) => {
+                      console.error('Failed to send message:', err);
+                      console.log('Error response:', err.error); // Log the full error response
+                      swal({
+                          icon: 'error',
+                          title: 'Error',
+                          text: err?.error?.message || 'An error occurred while sending the message.'
+                      });
+                  }
+              });
+      } else {
+          this.handleInvalidForm();
+      }
   }
+
 
   resetForm(): void {
     this.contactForm.reset();
@@ -56,6 +69,7 @@ export class ContactComponent implements OnInit {
     ValidateForm.validateAllFormFields(this.contactForm);
     alert("Invalid SignUp");
   }
+
 
   checkValidEmail(email: string): boolean {
     const pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;

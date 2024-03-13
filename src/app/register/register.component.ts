@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors }
 import { AuthService } from '../service/auth.service';
 import { Router } from '@angular/router';
 import ValidateForm from '../helpers/validateform';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-register',
@@ -32,23 +33,34 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+
   onSignUp(): void {
-    if (this.signUpForm.valid && this.checkValidEmail(this.signUpForm.value.email)) {
-      this.auth.signUp(this.signUpForm.value)
-        .subscribe({
-          next: (res) => {
-            alert(res.message);
-            this.resetForm();
-            this.navigateToLogin();
-          },
-          error: (err) => {
-            alert(err?.error.message);
-          }
-        });
-    } else {
-      this.handleInvalidForm();
-    }
+      if (this.signUpForm.valid && this.checkValidEmail(this.signUpForm.value.email)) {
+          this.auth.signUp(this.signUpForm.value)
+              .subscribe({
+                  next: (res) => {
+                      swal({
+                          icon: 'success',
+                          title: 'Success',
+                          text: res.message
+                      }).then(() => {
+                          this.resetForm();
+                          this.navigateToLogin();
+                      });
+                  },
+                  error: (err) => {
+                      swal({
+                          icon: 'error',
+                          title: 'Error',
+                          text: err?.error?.message || 'An error occurred while signing up.'
+                      });
+                  }
+              });
+      } else {
+          this.handleInvalidForm();
+      }
   }
+
 
   resetForm(): void {
     this.signUpForm.reset();
@@ -58,10 +70,15 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  handleInvalidForm(): void {
-    ValidateForm.validateAllFormFields(this.signUpForm);
-    alert("Invalid SignUp");
-  }
+
+handleInvalidForm(): void {
+  ValidateForm.validateAllFormFields(this.signUpForm);
+  swal({
+      icon: 'error',
+      title: 'Invalid SignUp',
+      text: 'Please fill out all required fields correctly.'
+  });
+}
 
   passwordValidator(control: AbstractControl): ValidationErrors | null {
     const value: string = control.value || '';

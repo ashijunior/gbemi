@@ -27,6 +27,7 @@
 .wrapper h1{
   font-size: 36px;
   text-align: center;
+  margin-bottom: 1rem;
 }
 
 .wrapper .input-box{
@@ -82,6 +83,7 @@
   font-size: 16px;
   color: white;
   font-weight: 600;
+  margin-top: 1rem;
 }
 
 .wrapper .register-link{
@@ -101,5 +103,11 @@
 }
 
 small{
-  color: rgb(225, 147, 147);;
+  color: rgb(225, 147, 147);
+  padding-left: 1rem;
 }
+
+.error + .input-box {
+  margin-top: 4rem; /* Add margin only when there is an error */
+}
+
